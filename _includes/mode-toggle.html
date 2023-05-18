@@ -1,26 +1,25 @@
-<!-- Switch the mode between dark and light. -->
+<!--
+  Switch the mode between dark and light.
+
+  v2.1
+  https://github.com/cotes2020/jekyll-theme-chirpy
+  © 2020 Cotes Chung
+  MIT License
+-->
+
+<i class="mode-toggle fas fa-sun" dark-mode-invisible></i>
+<i class="mode-toggle fas fa-moon" light-mode-invisible></i>
 
 <script type="text/javascript">
+
   class ModeToggle {
-    static get MODE_KEY() {
-      return 'mode';
-    }
-    static get MODE_ATTR() {
-      return 'data-mode';
-    }
-    static get DARK_MODE() {
-      return 'dark';
-    }
-    static get LIGHT_MODE() {
-      return 'light';
-    }
-    static get ID() {
-      return 'mode-toggle';
-    }
+    static get MODE_KEY() { return "mode"; }
+    static get DARK_MODE() { return "dark"; }
+    static get LIGHT_MODE() { return "light"; }
 
     constructor() {
-      if (this.hasMode) {
-        if (this.isDarkMode) {
+      if (this.mode != null) {
+        if (this.mode == ModeToggle.DARK_MODE) {
           if (!this.isSysDarkPrefer) {
             this.setDark();
           }
@@ -31,15 +30,16 @@
         }
       }
 
-      let self = this;
+      var self = this;
 
       /* always follow the system prefers */
-      this.sysDarkPrefers.addEventListener('change', () => {
-        if (self.hasMode) {
-          if (self.isDarkMode) {
+      this.sysDarkPrefers.addListener(function() {
+        if (self.mode != null) {
+          if (self.mode == ModeToggle.DARK_MODE) {
             if (!self.isSysDarkPrefer) {
               self.setDark();
             }
+
           } else {
             if (self.isSysDarkPrefer) {
               self.setLight();
@@ -48,78 +48,47 @@
 
           self.clearMode();
         }
-
-        self.notify();
       });
+
     } /* constructor() */
 
-    get sysDarkPrefers() {
-      return window.matchMedia('(prefers-color-scheme: dark)');
-    }
-
-    get isSysDarkPrefer() {
-      return this.sysDarkPrefers.matches;
-    }
-
-    get isDarkMode() {
-      return this.mode === ModeToggle.DARK_MODE;
-    }
-
-    get isLightMode() {
-      return this.mode === ModeToggle.LIGHT_MODE;
-    }
-
-    get hasMode() {
-      return this.mode != null;
-    }
-
-    get mode() {
-      return sessionStorage.getItem(ModeToggle.MODE_KEY);
-    }
-
-    /* get the current mode on screen */
-    get modeStatus() {
-      if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
-        return ModeToggle.DARK_MODE;
-      } else {
-        return ModeToggle.LIGHT_MODE;
-      }
-    }
 
     setDark() {
-      document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE);
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
       sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
     }
 
     setLight() {
-      document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE);
+      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
       sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
     }
 
     clearMode() {
-      document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
+      $('html').removeAttr(ModeToggle.MODE_KEY);
       sessionStorage.removeItem(ModeToggle.MODE_KEY);
     }
 
-    /* Notify another plugins that the theme mode has changed */
-    notify() {
-      window.postMessage(
-        {
-          direction: ModeToggle.ID,
-          message: this.modeStatus
-        },
-        '*'
-      );
-    }
+    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
+
+    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
+
+    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
+
+    get isLightkMode() { return this.mode == ModeToggle.LIGHT_MODE; }
+
+    get hasMode() { return this.mode != null; }
+
+    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
 
     flipMode() {
       if (this.hasMode) {
         if (this.isSysDarkPrefer) {
-          if (this.isLightMode) {
+          if (this.isLightkMode) {
             this.clearMode();
           } else {
             this.setLight();
           }
+
         } else {
           if (this.isDarkMode) {
             this.clearMode();
@@ -127,6 +96,7 @@
             this.setDark();
           }
         }
+
       } else {
         if (this.isSysDarkPrefer) {
           this.setLight();
@@ -135,9 +105,14 @@
         }
       }
 
-      this.notify();
     } /* flipMode() */
+
   } /* ModeToggle */
 
-  const modeToggle = new ModeToggle();
+  let toggle = new ModeToggle();
+
+  $(".mode-toggle").click(function() {
+    toggle.flipMode();
+  });
+
 </script>
