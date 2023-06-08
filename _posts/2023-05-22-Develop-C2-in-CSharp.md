@@ -50,7 +50,11 @@ Here is an non-exhaustive list of all the functionalities I would like to integr
 
 # Inspirations and links
 
+
 I started this journey by taking the excellent course [C2 Development in C#](https://training.zeropointsecurity.co.uk/courses/c2-development-in-csharp) of [Rasta Mouse](https://twitter.com/_rastamouse?lang=fr) on the [Zero Point Security](https://www.zeropointsecurity.co.uk/) platform.
+
+<iframe src="https://api.eu.badgr.io/public/assertions/PuyJZ4PwRWiv7xNqQtHb0g?embedVersion=1&amp;embedWidth=330&amp;embedHeight=191&amp;identity__email=olivier_pottiez%40yahoo.fr" title="Badge: C2 Development in C#" style="width: 330px; height: 191px; border: 0px;"></iframe>
+
 
 My developments are freely inspired by the [SharpC2](https://github.com/rasta-mouse/SharpC2) and [Covenant](https://github.com/cobbr/Covenant) Projects.
 
