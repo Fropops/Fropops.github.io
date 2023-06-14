@@ -6,7 +6,7 @@ categories: [Developpement]
 tags: [C#, C2, Red Team, Fork and Run, Injection, WinAPI, Command Execution]
 ---
 
-## Introduction
+# Introduction
 
 The first step of this technique is to master the creation of a new process.
 
@@ -17,7 +17,7 @@ Secondly, native C# methods do not enable us to create a process by injecting to
 Lastly, for code consistency and because we will heavily rely on the Windows API in subsequent steps, it seems relevant to handle this part directly using it.
 This process creation also plays a role in another C2 functionality: command execution. Therefore, we will study this feature and then expand its functionality to implement the "Fork and Run" technique.
 
-## Creating the process
+# Creating the process
 The use of the Windows API in C# is beyond the scope of this blog post series. There are numerous resources available on the internet that cover this topic, so I will assume that the reader is already familiarized with it.
 
 To create our process, we will use the CreateProcessW function from the Windows API (contained in the kernel32.dll). To use this method, we need to declare it using the following code:
@@ -161,7 +161,7 @@ Here is the result when the code is executed :
 Well, it seems to be working, but off course, as it's a new process we didn't get any output, let's resolve this.
 
 
-## Capturing Output stream
+# Capturing Output stream
 
 The Windows API comes to our rescue as we can create the process by redirecting the output (and input, although it's not relevant in this case) to a pipe.
 
@@ -263,7 +263,7 @@ When we put the pieces together we get the following result :
 ![Simple Process Creation With Output Execution](/assets/img/posts/ForkAndRun/exec-simple-creation-with-output.png)
 
 
-## What does it look likes in our C2?
+# What does it look likes in our C2?
 
 When integrated in the agent, this code allow us to execute remote commands, here you can find two simple samples :
 
@@ -271,7 +271,7 @@ When integrated in the agent, this code allow us to execute remote commands, her
 
 ![Simple Process Execution in C2 - Dir](/assets/img/posts/ForkAndRun/exec-simple-creation-with-output-C2-dir.png)
 
-## After words
+# Final Thoughts
 
 This first article demonstrates how to create a new process in C# using the Windows API and leverage pipe redirection for capturing and displaying the process output.
 
