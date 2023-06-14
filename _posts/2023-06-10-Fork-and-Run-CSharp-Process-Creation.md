@@ -3,14 +3,14 @@ title: Fork and Run Implementation in C# - Process Creation
 author: Fropops
 date: 2023-06-10 08:21:00 +0800
 categories: [Developpement]
-tags: [C#, C2, Red Team, Fork and Run, Injection, WinAPI]
+tags: [C#, C2, Red Team, Fork and Run, Injection, WinAPI, Command Execution]
 ---
 
 ## Introduction
 
 The first step of this technique is to master the creation of a new process.
 
-While the .NET framework provides a set of classes to manage this task, certain limitations push us to prefer direct usage of the Windows API:
+While the .NET framework provides a set of classes to manage this task, some limitations push us to prefer direct usage of the Windows API:
 
 Firstly, the .NET encapsulation does not allow us to start a process in a suspended state (although we will not use this capability in this post, we will need it later on).
 Secondly, native C# methods do not enable us to create a process by injecting tokens (we will explore this concept in the next post regarding token manipulation).
@@ -18,9 +18,9 @@ Lastly, for code consistency and because we will heavily rely on the Windows API
 This process creation also plays a role in another C2 functionality: command execution. Therefore, we will study this feature and then expand its functionality to implement the "Fork and Run" technique.
 
 ## Creating the process
-The use of the Windows API in C# is beyond the scope of this blog post series. There are numerous resources available on the internet that cover this topic, so I will assume that the reader has already familiarized themselves with it.
+The use of the Windows API in C# is beyond the scope of this blog post series. There are numerous resources available on the internet that cover this topic, so I will assume that the reader is already familiarized with it.
 
-To create our process, we will use the CreateProcessW method from the Windows API (contained in the kernel32.dll). To use this method, we need to declare it using the following code:
+To create our process, we will use the CreateProcessW function from the Windows API (contained in the kernel32.dll). To use this method, we need to declare it using the following code:
 
 ```c#
 [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
@@ -30,12 +30,14 @@ public static extern bool CreateProcessW(
    ref SECURITY_ATTRIBUTES lpProcessAttributes,
    ref SECURITY_ATTRIBUTES lpThreadAttributes,
    bool bInheritHandles,
-   PROCESS_CREATION_FLAGS dwCreationFlags, IntPtr lpEnvironment, string lpCurrentDirectory,
+   PROCESS_CREATION_FLAGS dwCreationFlags, 
+   IntPtr lpEnvironment, 
+   string lpCurrentDirectory,
    [In] ref STARTUPINFOEX lpStartupInfo,
    out PROCESS_INFORMATION lpProcessInformation);
 ```
 
-We also need to declare the various structures used by this method: SECURITY_ATTRIBUTES, STARTUPINFOEX, STARTUPINFO, PROCESS_CREATION_FLAGS, and PROCESS_INFORMATION:
+We also need to declare the various structures used by this function: SECURITY_ATTRIBUTES, STARTUPINFOEX, STARTUPINFO, PROCESS_CREATION_FLAGS, and PROCESS_INFORMATION:
 
 ```c#
 public struct SECURITY_ATTRIBUTES
@@ -202,7 +204,6 @@ SetHandleInformation(outPipe_rd, HANDLE_FLAGS.INHERIT, 0);
 startupInfoEx.StartupInfo.hStdError = outPipe_w;
 startupInfoEx.StartupInfo.hStdOutput = outPipe_w;
 
-
 startupInfoEx.StartupInfo.dwFlags |= USE_STD_HANDLES;
 ```
 
@@ -262,6 +263,16 @@ When we put the pieces together we get the following result :
 ![Simple Process Creation With Output Execution](/assets/img/posts/ForkAndRun/exec-simple-creation-with-output.png)
 
 
+## What does it look likes in our C2?
+
+When integrated in the agent, this code allow us to execute remote commands, here you can find two simple samples :
+
+![Simple Process Execution in C2 - Whoami](/assets/img/posts/ForkAndRun/exec-simple-creation-with-output-C2-whoami.png)
+
+![Simple Process Execution in C2 - Dir](/assets/img/posts/ForkAndRun/exec-simple-creation-with-output-C2-dir.png)
+
+## After words
+
 This first article demonstrates how to create a new process in C# using the Windows API and leverage pipe redirection for capturing and displaying the process output.
 
-You can find the complete source code on [Github](https://github.com/Fropops/OffensiveWinAPI/blob/main/TestForBlog/CreateProcessWithOutput.cs)
+You can find the complete source code of this article on [Github](https://github.com/Fropops/OffensiveWinAPI/blob/main/TestForBlog/CreateProcessWithOutput.cs)
