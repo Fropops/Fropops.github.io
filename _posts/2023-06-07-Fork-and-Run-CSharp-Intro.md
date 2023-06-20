@@ -18,8 +18,8 @@ While this practice is increasingly monitored by antivirus and other detection s
 
 Let's delve into this in detail in this series of posts, which will be divided into four parts:
 
-1. Fork and Run Implementation in C# - Process Creation
-2. Fork and Run Implementation in C# - User impersonation & Token Manipulation
+1. [Fork and Run Implementation in C# - Process Creation](/posts/Fork-and-Run-CSharp-Process-Creation/)
+2. [Fork and Run Implementation in C# - User impersonation & Token Manipulation](/posts/Fork-and-Run-CSharp-User-impersonation-Token-Manipulation)
 3. Fork and Run Implementation in C# - Shellcode Injection
 4. Fork and Run Implementation in C# - Going further
 
