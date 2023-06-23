@@ -8,7 +8,7 @@ tags: [C#, C2, Red Team, Fork and Run, Injection, WinAPI, Command Execution]
 
 # Introduction
 
-In the previous articles, we saw how to use the Windows API to create processes for the current user or with the rights of another user. Now, we will leverage this knowledge to inject malicious code that we want to execute.
+In the previous articles, we saw how to use the Windows API to [create processes](/posts/Fork-and-Run-CSharp-Process-Creation/) for the current user or [with the rights of another user](/posts/Fork-and-Run-CSharp-User-impersonation-Token-Manipulation/). Now, we will leverage this knowledge to inject malicious code that we want to execute.
 
 # Shellcode Preparation
 
