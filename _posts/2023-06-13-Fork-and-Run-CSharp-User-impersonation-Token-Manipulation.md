@@ -48,7 +48,7 @@ public enum LOGON_FLAGS : uint
 }
 ```
 
-In order to make it worl, we also need to remove the following line : 
+In order to make it work, we also need to remove the following line : 
 ```c#
 creationFlags |= PROCESS_CREATION_FLAGS.EXTENDED_STARTUPINFO_PRESENT;
 ```
