@@ -1,5 +1,5 @@
 ---
-title: Fork and Run Implementation in C# - Shellcode Injection
+title: Fork and Run Implementation in C# - Shellcode Injection & Execution
 author: Fropops
 date: 2023-06-21 08:00:00 +0800
 categories: [Developpement]
@@ -197,8 +197,16 @@ Let's repeat the attack from this new context:
 
 ![Injection - C2 - DCSync](/assets/img/posts/ForkAndRun/injection-c2-dcsync.png)
 
-# Final Thoughts
 
-This article demonstrates how to use the Windows API to inject shellcode in a newly created process, and how it's leveraged to execute hacking tools.
 
 You can find the complete source code of this article on [Github](https://github.com/Fropops/OffensiveWinAPI/blob/main/TestForBlog/Injection.cs)
+
+
+# Final Words
+
+In this series of posts, we focused on implementing the simplest possible version of the "Fork and Run" technique in C#. However, there are several areas of improvement, particularly in terms of utilizing the Windows API and code injection techniques.
+
+The direct invocation of Windows API functions using PInvoke presents a significant opportunity for detection by antivirus and other defense tools. To mitigate this detection risk, alternative methods of invoking these functions have been developed to make attacks more stealthy. One well-known alternative is the use of DInvoke (Dynamic Invocation), popularized by [TheWover](https://github.com/TheWover/DInvoke). RastaMouse has also reworked the code to provide a minimalist form that can be easily integrated into offensive tools available on  on [gitHub](https://github.com/rasta-mouse/DInvoke). 
+For further insights, I highly recommend reading Crypt0ace's [blog post](https://crypt0ace.github.io/posts/Using-DInvoke-For-Offensive-Tool-Development/) on the subject.
+
+In addition to Windows API enhancements, there are multiple code injection methods worth exploring. Crypt0ace has extensively covered various injection techniques in his [blog](https://crypt0ace.github.io/). These articles provide a comprehensive overview and explanations of these techniques.

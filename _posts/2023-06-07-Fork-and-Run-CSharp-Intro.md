@@ -20,7 +20,6 @@ Let's delve into this in detail in this series of posts, which will be divided i
 
 1. [Fork and Run Implementation in C# - Process Creation](/posts/Fork-and-Run-CSharp-Process-Creation/)
 2. [Fork and Run Implementation in C# - User impersonation & Token Manipulation](/posts/Fork-and-Run-CSharp-User-impersonation-Token-Manipulation/)
-3. [Fork and Run Implementation in C# - Shellcode Injection](/posts/Fork-and-Run-CSharp-Injection/)
-4. Fork and Run Implementation in C# - Going further
+3. [Fork and Run Implementation in C# - Shellcode Injection & Execution](/posts/Fork-and-Run-CSharp-Injection/)
 
 Throughout this series, we will provide detailed explanations, code examples, and practical insights to help you understand the implementation of Fork and Run in C#.
