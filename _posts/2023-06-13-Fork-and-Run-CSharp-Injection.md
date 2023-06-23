@@ -179,7 +179,23 @@ And here's the result :
 
 ![Injection - Mimikatz](/assets/img/posts/ForkAndRun/injection-mimikatz.png)
 
-# What does it look likes in our C2?
+# What does it look like in our C2?
+
+Assembling all the pieces we have prepared so far in our C2, we are able to execute malicious tools (such as Mimikatz) using the privileges of other users.
+
+
+Let's use our "Fork And Run" implementation to try a DCSync attack with the current user:
+![Injection - C2 - DCSync As Current User](/assets/img/posts/ForkAndRun/injection-c2-norights.png)
+
+As expected, we do not have sufficient privileges for this attack.
+
+Now, let's use Token manipulation to borrow the rights of the administrator logged in to our machine:
+
+![Injection - C2 - Steal Token](/assets/img/posts/ForkAndRun/injection-c2-steal.png)
+
+Let's repeat the attack from this new context:
+
+![Injection - C2 - DCSync](/assets/img/posts/ForkAndRun/injection-c2-dcsync.png)
 
 # Final Thoughts
 

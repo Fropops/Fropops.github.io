@@ -263,7 +263,7 @@ When we put the pieces together we get the following result :
 ![Simple Process Creation With Output Execution](/assets/img/posts/ForkAndRun/exec-simple-creation-with-output.png)
 
 
-# What does it look likes in our C2?
+# What does it look like in our C2?
 
 When integrated in the agent, this code allow us to execute remote commands, here you can find two simple samples :
 

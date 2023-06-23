@@ -200,7 +200,7 @@ And here is the result:
 
 ![Simple Process Execution - Steal Token](/assets/img/posts/ForkAndRun/steal-token-exec.png)
 
-# What does it look likes in our C2?
+# What does it look like in our C2?
 
 When integrated in the agent and running on the workstation as local Administrator, we try to enumerate the content of the C drive on the Domain Controller :
 
