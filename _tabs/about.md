@@ -66,3 +66,9 @@ To further enhance my practical experience, I have now immersed myself in networ
 *TryHackMe’s Red Team Capstone Challenge is a real end-to-end red team engagement, testing your team’s knowledge of key red teaming and network security testing topics!*
 
 ![Red Team Capstone](/assets/img/about/RedTeamCapstoneChallenge.jpeg)
+
+### Zephyr (Hack The Box)
+
+*ephyr is an intermediate-level red team simulation environment, designed to be attacked as a means of learning and honing your engagement skills and improving your active directory enumeration and exploitation skills. Zephyr includes a wide range of essential Active Directory flaws and misconfigurations to allow players to get a foothold in corporate environments.*
+
+![Dante Lab](/assets/img/about/Zephyr.png)
