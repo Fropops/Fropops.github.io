@@ -69,6 +69,14 @@ To further enhance my practical experience, I have now immersed myself in networ
 
 ### Zephyr (Hack The Box)
 
-*ephyr is an intermediate-level red team simulation environment, designed to be attacked as a means of learning and honing your engagement skills and improving your active directory enumeration and exploitation skills. Zephyr includes a wide range of essential Active Directory flaws and misconfigurations to allow players to get a foothold in corporate environments.*
+*Zephyr is an intermediate-level red team simulation environment, designed to be attacked as a means of learning and honing your engagement skills and improving your active directory enumeration and exploitation skills. Zephyr includes a wide range of essential Active Directory flaws and misconfigurations to allow players to get a foothold in corporate environments.*
 
 ![Dante Lab](/assets/img/about/Zephyr.png)
+
+## The courses
+
+### MalDev Academy
+
+*Maldev Academy is a comprehensive malware development course that focuses on x64 malware development, providing knowledge from basic to advanced level. The course is primarily designed for individuals in offensive security, but it also caters to beginners who have no prior experience in malware development.*
+
+![Dante Lab](/assets/img/about/MalDevAcademy.png)
